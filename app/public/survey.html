@@ -42,6 +42,23 @@
         </button>
       
         <script type ="text/javascript">
+        $("#submit").on("click", function(event){
+          event.preventDefault();
+          
+          let newFriend = {
+              name:$("#name").val().trim(),
+              photo:$("#photo").val().trim(),
+              scores:$("#q1").val()
+
+          };
+
+          $.post("/api/friends", newFriend)
+            .then(function(data){
+                console.log(data);
+                // is goingchange to modal box with results
+                alert("added new friend");
+            });
+        });
         </script>
 </body>
 </html>
