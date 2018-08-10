@@ -42,23 +42,30 @@
         </button>
       
         <script type ="text/javascript">
+
         $("#submit").on("click", function(event){
           event.preventDefault();
-          
+          alert("test");
+
+          //save the datas as object
           let newFriend = {
-              name:$("#name").val().trim(),
-              photo:$("#photo").val().trim(),
-              scores:$("#q1").val()
+              name:$("#name").val(),
+              photo:$("#photo").val(),
+              scores:[$("#q1").val()]
+            };
+          console.log(newFriend);
+          let currentURL = window.location.origin;
+          
+          $.post("/api/friends", newFriend,
+        function(data) {
 
-          };
+        alert(data);
 
-          $.post("/api/friends", newFriend)
-            .then(function(data){
-                console.log(data);
-                // is goingchange to modal box with results
-                alert("added new friend");
-            });
         });
+        });
+
+
+        
         </script>
 </body>
 </html>
