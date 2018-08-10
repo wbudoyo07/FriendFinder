@@ -27,6 +27,28 @@
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
         <select data-placeholder="" class="chosen-select" id="q1">
             <option value=""><span>test</span></option>
+            <option value=1>1 (Strongly Disagree)</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5 (Strongly Agree)</option>
+        </select>
+
+        <h3><strong>Question 2</strong></h3>
+        <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+        <select data-placeholder="" class="chosen-select" id="q2">
+            <option value=""><span>test</span></option>
+            <option value=1>1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h3><strong>Question 3</strong></h3>
+        <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+        <select data-placeholder="" class="chosen-select" id="q3">
+            <option value=""><span>test</span></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -34,35 +56,124 @@
             <option value="5">5 (Strongly Agree)</option>
         </select>
 
+        <h3><strong>Question 4</strong></h3>
+        <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+        <select data-placeholder="" class="chosen-select" id="q4">
+            <option value=""><span>test</span></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+
+        <h3><strong>Question 5</strong></h3>
+        <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+        <select data-placeholder="" class="chosen-select" id="q5">
+            <option value=""><span>test</span></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+
+        <h3><strong>Question 6</strong></h3>
+        <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+        <select data-placeholder="" class="chosen-select" id="q6">
+            <option value=""><span>test</span></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+
+        <h3><strong>Question 7</strong></h3>
+        <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+        <select data-placeholder="" class="chosen-select" id="q7">
+            <option value=""><span>test</span></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h3><strong>Question 8</strong></h3>
+        <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+        <select data-placeholder="" class="chosen-select" id="q8">
+            <option value=""><span>test</span></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h3><strong>Question 9</strong></h3>
+        <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+        <select data-placeholder="" class="chosen-select" id="q9">
+            <option value=""><span>test</span></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+
+        <h3><strong>Question 10</strong></h3>
+        <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+        <select data-placeholder="" class="chosen-select" id="q10">
+            <option value=""><span>test</span></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
     <br>
     <br>
         <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">
             <i class="fa fa-check-circle" aria-hidden="true"></i>
             Submit
         </button>
+
+        
       
         <script type ="text/javascript">
 
         $("#submit").on("click", function(event){
           event.preventDefault();
           alert("test");
-
+            
           //save the datas as object
-          let newFriend = {
+         
+            let newFriend = {
               name:$("#name").val(),
               photo:$("#photo").val(),
-              scores:[$("#q1").val()]
+              scores:[]
+
             };
-          console.log(newFriend);
-          let currentURL = window.location.origin;
-          
-          $.post("/api/friends", newFriend,
+            // get all the value from questions 
+            for(i=1; i<=10; i++){
+                newFriend.scores.push( parseInt( $("#q"+i).val()));
+            }
+            console.log( newFriend);
+        $.post("/api/friends", newFriend,
         function(data) {
-
-        alert(data);
+            console.log(data);
+           
 
         });
+
+    
         });
+
 
 
         
