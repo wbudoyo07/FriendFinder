@@ -27,11 +27,11 @@
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
         <select data-placeholder="" class="chosen-select" id="q1">
             <option value=""><span>test</span></option>
-            <option value=1>1 (Strongly Disagree)</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5 (Strongly Agree)</option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
         </select>
 
         <h3><strong>Question 2</strong></h3>
@@ -142,6 +142,34 @@
             <i class="fa fa-check-circle" aria-hidden="true"></i>
             Submit
         </button>
+    <br>
+    <footer class="footer">
+        <div class="container">
+              <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/wbudoyo07/FriendFinder">GitHub Repo</a></p>
+        </div>
+    </footer>
+
+ <!-- Modal -->
+ <div id="resultsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title"><strong>Best Match</strong></h2>
+        </div>
+        <div class="modal-body">
+          <h2 id="matchName"></h2>
+          <img id="matchImg" src="" alt="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
         
       
@@ -149,30 +177,66 @@
 
         $("#submit").on("click", function(event){
           event.preventDefault();
-          alert("test");
+
             
-          //save the datas as object
-         
-            let newFriend = {
-              name:$("#name").val(),
-              photo:$("#photo").val(),
-              scores:[]
+        // Form validation
+        function validateForm() {
+            let isValid = true;
+            $('.form-control').each(function() {
+                if ( $(this).val() === '' )
+                    isValid = false;
+            });
+            $('.chosen-select').each(function() {
+                if( $(this).val() === "")
+                    isValid = false
+            })
+            return isValid;
+        }
 
-            };
-            // get all the value from questions 
-            for(i=1; i<=10; i++){
-                newFriend.scores.push( parseInt( $("#q"+i).val()));
+
+            if(validateForm() === true){
+                
+                //create a new object
+                let newFriend = {
+                    name:$("#name").val(),
+                    photo:$("#photo").val(),
+                    scores:[$("#q1").val(),
+                            $("#q2").val(),
+                            $("#q3").val(),
+                            $("#q4").val(),
+                            $("#q5").val(),
+                            $("#q6").val(),
+                            $("#q7").val(),
+                            $("#q8").val(),
+                            $("#q9").val(),
+                            $("#q10").val()
+                        ]
+                }
+
+                 $.post("/api/friends", newFriend, function(data){
+                    console.log(data);
+                     // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+		    		$("#matchName").text(data.name);
+		    		$('#matchImg').attr("src", data.photo);
+			    	// Show the modal with the best match 
+			    	$("#resultsModal").modal('toggle');
+            });
+                  
             }
-            console.log( newFriend);
-        $.post("/api/friends", newFriend,
-        function(data) {
-            console.log(data);
+            else{
+                a$("#resultsModal").modal('toogle');
+            }
+          
            
+                  
+           
+            });
+       
 
-        });
+          
 
     
-        });
+      
 
 
 
