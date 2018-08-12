@@ -4,29 +4,51 @@ module.exports = function(app) {
     app.get("/api/friends", function(req, res) {
         res.json(friendsData);
       });
+    
 
-    app.post("/api/friends", function(req,res){
-        //Convert each user's results into a simple array of numbers
-        newUserScores=[];
+      app.post("/api/friends", function (req,res){
+        
+        //maximum point you can get in survey
+        let bestScore = 50;
+        let bestMatch;
 
-    // get the score from new user and push them to the array
-    // get the new user data and compare them with each existed user scores
-    // store the value into variables
-    //  when the loop is getting the next existed user data
-    // and compare the value when we first store the array
-    // if it bigger let it go
-    //  if it less change the value
-    // after the looping done
-    //  print the lowest data
+        // always push the new data on index 0 array (this data use to compare the value)
+        let newUserScores=[];
+        newUserScores.splice(0,1,req.body);
+        
+        // res.json(friendsData[0]);
+        // iterate all the data from existed data
+        for (i=0; i<friendsData.length; i++){
+            let currentScore = 0;
+            // console.log("new user data: " + newUserScores[0].scores);
+            console.log("data inside friends.js index "+i+": "+friendsData[i].scores);
+            console.log("data  new user :"+ newUserScores[0].scores);
+            //iterate the new user survet data and calculate their differences scores
+            for(k=0; k<newUserScores[0].scores.length; k++){
+                currentScore += Math.abs(parseInt(friendsData[i].scores[k])- parseInt(newUserScores[0].scores[k]));
+                console.log(currentScore);
+            };
+            
+            if(currentScore <= bestScore){
 
-        // newUserScores.push(req.body);
-        // console.log(newUserScores);
-        // console.log(newUserScores[0].scores);
+                console.log("current Score:"+bestScore);
+                bestScore = currentScore;
+                console.log("current score:"+bestScore);
+                bestMatch = friendsData[i];
+                console.log(JSON.stringify(bestFriend));
+                
+            }
+            
+        }
+      
+        res.json(bestMatch);
+        friendsData.push(req.body);
 
-		// for(i=0;  i<10; i++){
-        //     newUserScores[0].scores[i] - friendsData[0]
-        // }
-            res.json(friendsData[0]);
-		// friendsData.push(req.body);
-    });
+      });
+
 };
+
+
+
+
+
