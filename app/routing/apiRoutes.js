@@ -40,7 +40,7 @@ module.exports = function(app) {
             }
             
         }
-      
+        // res.json(friendsData[5]);
         res.json(bestMatch);
         friendsData.push(req.body);
 
