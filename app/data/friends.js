@@ -79,22 +79,22 @@ let friendData=[
         "5"
       ]
    },
-//    {
-//     "name": "Elon Musk",
-//     "photo": "https://boygeniusreport.files.wordpress.com/2017/07/1500295159151.jpg?quality=98&strip=all&w=782",
-//     "scores": [ 
-//         "1",
-//         "5",
-//         "2",
-//         "2",
-//         "5",
-//         "3",
-//         "4",
-//         "5",
-//         "1",
-//         "1"
-//       ]
-//    }
+   {
+    "name": "Elon Musk",
+    "photo": "https://boygeniusreport.files.wordpress.com/2017/07/1500295159151.jpg?quality=98&strip=all&w=782",
+    "scores": [ 
+        "1",
+        "5",
+        "2",
+        "2",
+        "5",
+        "3",
+        "4",
+        "5",
+        "1",
+        "1"
+      ]
+   }
 ];  
 
 module.exports =friendData;
