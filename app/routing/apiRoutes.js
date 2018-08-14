@@ -35,7 +35,7 @@ module.exports = function(app) {
                 bestScore = currentScore;
                 console.log("current score:"+bestScore);
                 bestMatch = friendsData[i];
-                console.log(JSON.stringify(bestFriend));
+                console.log(JSON.stringify(bestMatch));
                 
             }
             
